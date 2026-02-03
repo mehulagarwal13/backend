@@ -3,3 +3,4 @@ sum(5,10);
 sub(10,5);
 mul(5,10);
 console.log("done");
+console.log("done2");
