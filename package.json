@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mehulagarwal13/backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mehulagarwal13/backend/issues"
+  },
+  "homepage": "https://github.com/mehulagarwal13/backend#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

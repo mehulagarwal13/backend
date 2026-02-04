@@ -1,5 +1,8 @@
 const express=require('express');
 const app=express();
+app.get("/user",(req,res)=>{
+    res.send({name:"MEHUL",age:21,number:8979011405});
+});
 app.use(/^\/c+t$/,(req,res)=>{
     res.end("Hey daksh i am plus");  //    /^\/c?t  
 });
