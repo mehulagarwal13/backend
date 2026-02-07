@@ -3,7 +3,8 @@ const app=express();
 const bookstore=[
     {id:1,name:"the rebel",author:"Mehul"},
     {id:2,name:"the conflict",author:"Daksh"},
-    {id:3,name:"major",author:"prakash"}
+    {id:3,name:"major",author:"prakash"},
+    {id:4,name:"nomeansno",author:"garv"}
 ]
 app.use(express.json());
 app.get("/book",(req,res)=>{
