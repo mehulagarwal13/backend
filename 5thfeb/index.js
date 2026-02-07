@@ -9,6 +9,7 @@ app.post("/user", (req, res) => {
     res.send("DATA saved success");
 });
 
+
 app.listen(1000,()=>{
     console.log("server is running at port number 1000")
 });
