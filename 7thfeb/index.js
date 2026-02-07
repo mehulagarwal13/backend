@@ -5,10 +5,12 @@ app.use(express.json());
 app.use("/send",(req,res,next)=>{
     console.log("I am First");
     next();
-},(req,res,next)=>{
+},
+(req,res,next)=>{
     console.log("I am Second");
     next();
-},(req,res)=>{
+},
+(req,res)=>{
     console.log("i am Third");
     res.send("hey I can implement multipeple call back by help of next")
 })
