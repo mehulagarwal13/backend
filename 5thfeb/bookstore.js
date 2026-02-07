@@ -27,6 +27,13 @@ app.patch("/book",(req,res)=>{
     res.send(  "patch the data upgrade");
 })
 
+app.delete("/book/:id",(req,res)=>{
+    const id=parseInt(req.params.id);
+    const index=bookstore.findIndex(info=>info.id===id);
+    bookstore.splice(index,1);//jitna element delete karna hai 
+    res.send("delete complete ");
+})
+
 app.listen(3000,()=>{
     console.log("the server is running at port 3000");
 });
