@@ -5,6 +5,7 @@ app.use(express.json());
 app.use("/user",(req,res,next)=>{
     console.log(`${Date.now()} ${req.method} ${req.originalUrl}`);//yeh ek middleware ka example hai 
     //authorisation bhi asani sa kar sakta hai
+    //30 line ka code agar har jagah likhna hai toh yha chala do bas 
     next();
 })
 
