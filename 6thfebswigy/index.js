@@ -53,6 +53,40 @@ app.delete("/admin/:id",(req,res)=>{
          res.status(403).send("data not delete success");
      }
 })
+// app.patch("/update", (req, res) => {
+//     const code = 1;
+
+//     if (code !== 1) {
+//         return res.status(403).send("Not authorized");
+//     }
+
+//     const id = req.body.id;
+
+//     const fooddata = fooditem.find(item => item.id === id);
+
+//     if (fooddata) {
+
+//         if (req.body.food) {
+//             fooddata.food = req.body.food;
+//         }
+
+//         if (req.body.price) {
+//             fooddata.price = req.body.price;
+//         }
+
+//         if (req.body.category) {
+//             fooddata.category = req.body.category;
+//         }
+
+//         res.status(200).send({
+//             message: "Food updated successfully",
+//             data: fooddata
+//         });
+//     }
+//     else {
+//         res.status(404).send("Food item not found");
+//     }
+// });
 
 app.patch("/update", (req, res) => {
     const code = 1;
