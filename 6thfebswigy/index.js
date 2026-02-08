@@ -137,3 +137,31 @@ app.listen(3000, () => {
 //     }
 // });
 
+
+const addtocart=[];
+app.post("/user",(req,res)=>{
+    const id=parseInt(req.body.id)
+    const index=fooditem.findIndex(info=>info.id===id);
+   if (index !== -1)
+    {
+        addtocart.push(fooditem[index]);
+    res.send({Message:"add in the cart",
+        Data:addtocart}
+    )
+    }
+})
+app.get("/user",(req,res)=>{
+    res.status(200).send(addtocart);
+})
+
+app.delete("/user",(req,res)=>{
+    const id=parseInt(req.body.id);
+    const index=addtocart.findIndex(info=>info.id===id);
+    if(index !==-1){
+        addtocart.splice(index,1);
+        res.status(200).send({data:addtocart,message:"success"})
+    }
+    else{
+        res.status(404).send("not there");
+    }
+})
