@@ -37,7 +37,7 @@ app.use("/admin", (req, res, next) => {
     console.log("Admin middleware passed");
     next();
   } else {
-    return res.status(401).send("Unauthorized");
+    return res.status(431).send("Unauthorized");
   }
 });
 
