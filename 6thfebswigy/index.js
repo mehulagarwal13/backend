@@ -40,6 +40,7 @@ app.post("/admin",(req,res)=>{
 app.delete("/admin/:id",(req,res)=>{
      const code=1;
      if(code==1){
+        //code likhna hoga aythentication ka isko permit hai bhi ya nhi 
         const id=parseInt(req.params.id);
         const index=fooditem.findIndex(info=>info.id===id);
         if ( index=== -1) {
@@ -52,6 +53,34 @@ app.delete("/admin/:id",(req,res)=>{
          res.status(403).send("data not delete success");
      }
 })
+
+app.patch("/update", (req, res) => {
+    const code = 1;
+
+    if (code !== 1) {
+        return res.status(403).send("Not authorized");
+    }
+
+    const { id, ...updateData } = req.body;
+    const index = fooditem.findIndex(info => info.id === id);
+
+    if (index === -1) {
+        return res.status(404).send("Food item not found");
+    }
+
+    // dynamic update
+    fooditem[index] = {
+        ...fooditem[index],
+        ...updateData
+    };
+
+    res.status(200).send({
+        message: "Data updated successfully",
+        data: fooditem[index]
+    });
+});
+
+
 app.listen(3000,()=>{
     console.log("listen at port 3000");
 })
