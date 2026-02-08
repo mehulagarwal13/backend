@@ -1,6 +1,9 @@
-const express=require("express");
-const app=express();
+const express = require("express");
+const app = express();
+
 app.use(express.json());
+
+// -------------------- DATA --------------------
 const fooditem = [
   { id: 1, category: "veg", name: "Paneer Butter Masala", price: 180 },
   { id: 2, category: "veg", name: "Veg Biryani", price: 150 },
@@ -20,39 +23,84 @@ const fooditem = [
   { id: 16, category: "veg", name: "Tomato Soup", price: 80 },
   { id: 17, category: "non-veg", name: "Chicken Tikka", price: 230 }
 ];
-app.get("/show",(req,res)=>{
-    res.status(200).send(fooditem);
-    console.log("show success");
-})
 
-app.post("/admin",(req,res)=>{
-    //authenrication done 
-    const code=1;
-    if(code==1){
-        fooditem.push(req.body);
-        res.status(201).send("add item successfully")
-    }
-    else{
-        res.status(202).send("items not added");
-    }
-})
+// -------------------- PUBLIC ROUTE --------------------
+app.get("/show", (req, res) => {
+  res.status(200).send(fooditem);
+});
 
-app.delete("/admin/:id",(req,res)=>{
-     const code=1;
-     if(code==1){
-        //code likhna hoga aythentication ka isko permit hai bhi ya nhi 
-        const id=parseInt(req.params.id);
-        const index=fooditem.findIndex(info=>info.id===id);
-        if ( index=== -1) {
-            return res.status(404).send("Food item not found");
-        }
-        fooditem.splice(index,1);
-        res.status(200).send("data delete success");
-     }
-     else{
-         res.status(403).send("data not delete success");
-     }
-})
+// -------------------- ADMIN MIDDLEWARE --------------------
+app.use("/admin", (req, res, next) => {
+  const code = 1; // yahan JWT / auth logic aayega
+
+  if (code === 1) {
+    console.log("Admin middleware passed");
+    next();
+  } else {
+    return res.status(401).send("Unauthorized");
+  }
+});
+
+// -------------------- ADD ITEM --------------------
+app.post("/admin", (req, res) => {
+    const newItem=req.body;
+    fooditem.push(newItem);
+
+  res.status(201).send({
+    message: "Item added successfully",
+    data: newItem
+  });
+});
+
+// -------------------- UPDATE ITEM (DYNAMIC PATCH) --------------------
+app.patch("/admin", (req, res) => {
+  const { id, ...updateData } = req.body;
+
+  if (!id) {
+    return res.status(400).send("ID is required");
+  }
+
+  if (Object.keys(updateData).length === 0) {
+    return res.status(400).send("Nothing to update");
+  }
+
+  const index = fooditem.findIndex(item => item.id === id);
+
+  if (index === -1) {
+    return res.status(404).send("Food item not found");
+  }
+
+  fooditem[index] = {
+    ...fooditem[index],
+    ...updateData
+  };
+
+  res.status(200).send({
+    message: "Item updated successfully",
+    data: fooditem[index]
+  });
+});
+
+// -------------------- DELETE ITEM --------------------
+app.delete("/admin/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+
+  const index = fooditem.findIndex(item => item.id === id);
+
+  if (index === -1) {
+    return res.status(404).send("Food item not found");
+  }
+
+  fooditem.splice(index, 1);
+
+  res.status(200).send("Item deleted successfully");
+});
+
+// -------------------- SERVER --------------------
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+
 // app.patch("/update", (req, res) => {
 //     const code = 1;
 
@@ -88,33 +136,3 @@ app.delete("/admin/:id",(req,res)=>{
 //     }
 // });
 
-app.patch("/update", (req, res) => {
-    const code = 1;
-
-    if (code !== 1) {
-        return res.status(403).send("Not authorized");
-    }
-
-    const { id, ...updateData } = req.body;
-    const index = fooditem.findIndex(info => info.id === id);
-
-    if (index === -1) {
-        return res.status(404).send("Food item not found");
-    }
-
-    // dynamic update
-    fooditem[index] = {
-        ...fooditem[index],
-        ...updateData
-    };
-
-    res.status(200).send({
-        message: "Data updated successfully",
-        data: fooditem[index]
-    });
-});
-
-
-app.listen(3000,()=>{
-    console.log("listen at port 3000");
-})
