@@ -1,0 +1,11 @@
+const auth=(req, res, next) => {
+  const code = 1; // yahan JWT / auth logic aayega
+
+  if (code === 1) {
+    console.log("Admin middleware passed");
+    next();
+  } else {
+    return res.status(431).send("Unauthorized");
+  }
+};
+module.exports={auth};

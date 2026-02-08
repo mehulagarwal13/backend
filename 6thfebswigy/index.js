@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const {auth}=require("./middleware/authentication")
 app.use(express.json());
 
 // -------------------- DATA --------------------
@@ -30,16 +30,17 @@ app.get("/show", (req, res) => {
 });
 
 // -------------------- ADMIN MIDDLEWARE --------------------
-app.use("/admin", (req, res, next) => {
-  const code = 1; // yahan JWT / auth logic aayega
+// app.use("/admin", (req, res, next) => {
+//   const code = 1; // yahan JWT / auth logic aayega
 
-  if (code === 1) {
-    console.log("Admin middleware passed");
-    next();
-  } else {
-    return res.status(431).send("Unauthorized");
-  }
-});
+//   if (code === 1) {
+//     console.log("Admin middleware passed");
+//     next();
+//   } else {
+//     return res.status(431).send("Unauthorized");
+//   }
+// });
+app.use("/admin",auth);
 
 // -------------------- ADD ITEM --------------------
 app.post("/admin", (req, res) => {
