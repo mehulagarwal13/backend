@@ -43,7 +43,7 @@ app.delete("/admin/:id",(req,res)=>{
         const id=parseInt(req.params.id);
         const index=fooditem.findIndex(info=>info.id===id);
         if ( index=== -1) {
-           
+            return res.status(404).send("Food item not found");
         }
         fooditem.splice(index,1);
         res.status(200).send("data delete success");
