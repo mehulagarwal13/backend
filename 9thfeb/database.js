@@ -20,6 +20,8 @@ async function main() {
   const collection = db.collection('user'); //yeh yha bhi check nhi karta ki esa document hai bhi ya nhi
 
   // the following code examples can be pasted here...
+  const findResult = await collection.find({}).toArray();
+  console.log('Found documents =>', findResult);
 
   return 'done.';
 }
