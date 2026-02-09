@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 // import { MongoClient } from 'mongodb'
 
 // Connection URL
-//username password clustername
+//username password clustername   %40
 const url = "mongodb+srv://mehulagarwal333:luhem%401313@coding.dzqigr6.mongodb.net/myProject";
 const client = new MongoClient(url);
 
