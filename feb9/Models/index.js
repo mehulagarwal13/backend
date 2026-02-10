@@ -15,10 +15,10 @@ app.post("/info", async (req, res) => {
   res.status(201).json(data);
 });
 
-// app.delete("/info",async(req,res)=>{
-//   const data=await user.deleteMany(req.body);
-//   res.send(data);
-// })
+app.delete("/info",async(req,res)=>{
+  const data=await user.deleteMany(req.body);
+  res.send(data);
+})
 main()
   .then(() => {
     console.log("db is connected");
