@@ -19,6 +19,17 @@ app.delete("/info",async(req,res)=>{
   const data=await user.deleteMany(req.body);
   res.send(data);
 })
+app.put("/info", async (req, res) => {
+  const { name, city, age, gender } = req.body;
+
+  const data = await user.updateOne(
+    { name },
+    { $set: { city, age, gender } }
+  );
+
+  res.send(data);
+});
+
 main()
   .then(() => {
     console.log("db is connected");
