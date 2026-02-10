@@ -10,10 +10,10 @@ app.get("/info",async(req,res)=>{
   res.send(information)
 })
 
-// app.post("/info", async (req, res) => {
-//   const data = await user.create(req.body);
-//   res.status(201).json(data);
-// });
+app.post("/info", async (req, res) => {
+  const data = await user.create(req.body);
+  res.status(201).json(data);
+});
 
 // app.delete("/info",async(req,res)=>{
 //   const data=await user.deleteMany(req.body);
