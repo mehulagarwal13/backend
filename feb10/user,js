@@ -1,0 +1,30 @@
+const mongoose=require("mongoose");
+const {schema}=mongoose
+
+const userschema=new schema({
+    firstname:{
+        type:String
+    },
+    lastname:{
+        type:String
+    },
+    city:{
+        type:String
+    },
+    gender:{
+        type:String
+    },
+    age:{
+        type:Number
+    },
+    email:{
+        type:String
+    },
+    password:{
+        type:String
+    }
+})
+
+const user=schema.model("customers",userschema);
+
+module.exports={user};
