@@ -18,6 +18,34 @@ app.post("/store",async(req,res)=>{
         res.send("Error");
     }
 })
+app.get("/store",async(req,res)=>{
+    try{
+        const info=await user.find({})
+        res.send({message:"data shown",data:info}).status(200)
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+app.get("/store/:id",async(req,res)=>{
+    try{
+    const id=req.params.id;
+    const info=await user.findById(id);
+    res.send(info);
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+app.delete("/store/:id",async(req,res)=>{
+    try{
+    const deletedelement=await user.findByIdAndDelete(req.params.id);
+    res.send("deleted successfully")
+    }
+    catch(err){
+        res.send(err)
+    }
+})
 main()
  .then(async()=>{
     console.log("DB IS CONNECTED")
