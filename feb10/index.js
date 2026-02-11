@@ -15,7 +15,7 @@ app.post("/store",async(req,res)=>{
     catch(err){
 
         console.log(err);
-        res.send("Error");
+        res.send("ERROR " + err.message)
     }
 })
 app.get("/store",async(req,res)=>{
@@ -44,6 +44,17 @@ app.delete("/store/:id",async(req,res)=>{
     }
     catch(err){
         res.send(err)
+    }
+})
+
+app.patch("/update",async(req,res)=>{
+     try{
+    const {id,...up}=req.body;
+    await user.findByIdAndUpdate(id,up)
+    res.send("update it");
+    }
+    catch(err){
+        res.send("ERROR " + err.message)
     }
 })
 main()

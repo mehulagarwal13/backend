@@ -3,7 +3,8 @@ const {Schema}=mongoose
 
 const userschema=new Schema({
     firstname:{
-        type:String
+        type:String,
+        required:true
     },
     lastname:{
         type:String
@@ -15,9 +16,13 @@ const userschema=new Schema({
         type:String
     },
     age:{
+        min:10,
+        max:70,
         type:Number
     },
     email:{
+        unique:true,
+        required:true,
         type:String
     },
     password:{
