@@ -33,7 +33,7 @@ const userschema=new Schema({
     password:{
         type:String
     }
-})
+},{timestamps:true})
 
 const user=mongoose.model("customers",userschema);
 

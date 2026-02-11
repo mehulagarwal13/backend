@@ -50,7 +50,7 @@ app.delete("/store/:id",async(req,res)=>{
 app.patch("/update",async(req,res)=>{
      try{
     const {id,...up}=req.body;
-    await user.findByIdAndUpdate(id,up)
+    await user.findByIdAndUpdate(id,up,{"runValidators":true})
     res.send("update it");
     }
     catch(err){
