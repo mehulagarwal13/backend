@@ -28,7 +28,8 @@ const userschema=new Schema({
         unique:true,
         required:true,
         type:String,
-        trim:true
+        trim:true,
+        immutable:true
     },
     password:{
         type:String
