@@ -15,6 +15,7 @@ const userschema=new Schema({
         type:String
     },
     gender:{
+        enum:["male","female","others"],
         type:String
     },
     age:{
