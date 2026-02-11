@@ -3,6 +3,8 @@ const {Schema}=mongoose
 
 const userschema=new Schema({
     firstname:{
+        minlength:3,
+        maxlength:20,
         type:String,
         required:true
     },
