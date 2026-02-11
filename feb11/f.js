@@ -13,8 +13,8 @@ async function Hashing() {
         console.timeEnd("hash");
         console.log(salt)
         console.log(hashpass);
-
         
+
     } 
     catch (err) {
         console.error(err);
