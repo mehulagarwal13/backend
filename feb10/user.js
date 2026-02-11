@@ -16,7 +16,8 @@ const userschema=new Schema({
     },
     gender:{
         enum:["male","female","others"],
-        type:String
+        type:String,
+        lowercase:true
     },
     age:{
         min:10,
@@ -26,7 +27,8 @@ const userschema=new Schema({
     email:{
         unique:true,
         required:true,
-        type:String
+        type:String,
+        trim:true
     },
     password:{
         type:String
