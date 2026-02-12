@@ -2,7 +2,8 @@ const main=require("./database");
 const express=require("express");
 const app=express();
 app.use(express.json());
-const customer=require("./user")
+const customer=require("./user");
+const user = require("../feb11/user");
 
 app.post("./register",async(req,res)=>{
     //api check karunga db alling sa phle
@@ -12,10 +13,13 @@ app.post("./register",async(req,res)=>{
          throw new Error(`${isallowed} field missing`);
     
     try{
-
+        const data=await user.create(req.body);
+        res.send({message:"send the data",
+             data: data}
+        )
     }
     catch(err){
-        
+        res.send("ERROR " + err.message)
     }
 })
 main()
