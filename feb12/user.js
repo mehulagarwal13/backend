@@ -3,15 +3,15 @@ const {Schema}=mongoose;
 
 const userschema=new Schema({
     name:{
-        type:string,
+        type:String,
         required:true
     },
     email:{
-        type:string,
+        type:String,
         required:true
     },
     password:{
-         type:string,
+         type:String,
         required:true
     },
     age:{
@@ -20,5 +20,5 @@ const userschema=new Schema({
 })
 
 
-const customer=mongoose.model("customers",userschema);
+const customer=mongoose.model("students",userschema);
 module.exports=customer;

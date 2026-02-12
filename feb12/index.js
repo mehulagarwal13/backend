@@ -2,15 +2,14 @@ const main=require("./database");
 const express=require("express");
 const app=express();
 app.use(express.json());
-const customer=require("./user");
-const user = require("../feb11/user");
+const user = require("./user");
 
-app.post("./register",async(req,res)=>{
+app.post("/register",async(req,res)=>{
     //api check karunga db alling sa phle
     const mandatoryfield=["email","name","password"];
-    const isallowed=mandatoryfield.every((k)=>object.keys(req.body).includes(k));
+    const isallowed=mandatoryfield.every((k)=>Object.keys(req.body).includes(k));
     if(!isallowed)
-         throw new Error(`${isallowed} field missing`);
+         throw new Error(`field missing`);
     
     try{
         const data=await user.create(req.body);
