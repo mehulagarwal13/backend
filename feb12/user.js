@@ -14,7 +14,9 @@ const userschema=new Schema({
          type:string,
         required:true
     },
-    age
+    age:{
+        type:Number
+    }
 })
 
 
