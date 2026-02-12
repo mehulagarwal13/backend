@@ -3,15 +3,14 @@ const express=require("express");
 const app=express();
 app.use(express.json());
 const user = require("./user");
-
+const validatoruser=require("./validator")
+const bcrypt=require("bcrypt")
 app.post("/register",async(req,res)=>{
     //api check karunga db alling sa phle
-    const mandatoryfield=["email","name","password"];
-    const isallowed=mandatoryfield.every((k)=>Object.keys(req.body).includes(k));
-    if(!isallowed)
-         throw new Error(`field missing`);
     
     try{
+        validatoruser(req.body);
+        req.body.password=await bcrypt.hash(req.body.password,10); 
         const data=await user.create(req.body);
         res.send({message:"send the data",
              data: data}
