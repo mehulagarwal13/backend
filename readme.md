@@ -4,4 +4,8 @@ firstly when you make any project in js for backend
 2 npm install nodemon //nodemon index.js run 
 npm install mongoose
 npm install mongodb
+npm i bcrypt
+npm i validator
+npm i cookie-parse
+
 yes i am pro at 
