@@ -43,7 +43,12 @@ app.post("/login", async (req, res) => {
         res.send(err.message);
     }
 });
-app.get("/info",)
+app.get("/info",async(req,res)=>{
+    const result=await user.find();
+    console.log(req.cookies);
+    res.send(result);
+
+})
 main()
 .then(async()=>{
     console.log("DB IS CONNECTED")
