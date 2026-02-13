@@ -5,6 +5,8 @@ app.use(express.json());
 const user = require("./user");
 const validatoruser=require("./validator")
 const bcrypt=require("bcrypt")
+const cookieparse=require("cookie-parser")
+app.use(cookieparse());
 app.post("/register",async(req,res)=>{
     //api check karunga db alling sa phle    
     try{
