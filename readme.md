@@ -9,3 +9,5 @@ npm i validator
 npm i cookie-parse
 
 yes i am pro at 
+
+npm i express mongoose bcrypt jsonwebtoken cookie-parser cors
