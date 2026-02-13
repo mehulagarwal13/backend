@@ -43,7 +43,7 @@ app.post("/login", async (req, res) => {
         res.send(err.message);
     }
 });
-
+app.get("/info",)
 main()
 .then(async()=>{
     console.log("DB IS CONNECTED")
