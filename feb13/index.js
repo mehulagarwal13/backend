@@ -35,7 +35,8 @@ app.post("/login", async (req, res) => {
         if (!p) {
             return res.send("Invalid credentials");
         }
-
+        //jwt token bhejo cokkies ki help sa
+        res.cookie("token","ddbhgbsjbjhsbjsf");
         res.send("login success");
     }
     catch (err) {
