@@ -53,6 +53,8 @@ app.post("/login", async (req, res) => {
         res.send(err.message);
     }
 });
+
+
 // app.get("/info",async(req,res)=>{
 //     try {
 //         //mujhe verify karna hoga ki yeh user wahi hai jisne login kia
@@ -75,7 +77,7 @@ app.get("/info", async (req, res) => {
             throw new Error("Token not found");
         }
 
-        
+
         const playload = jwt.verify(token, "mysecretkey");
 
         console.log(playload);
