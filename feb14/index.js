@@ -53,20 +53,41 @@ app.post("/login", async (req, res) => {
         res.send(err.message);
     }
 });
-app.get("/info",async(req,res)=>{
+// app.get("/info",async(req,res)=>{
+//     try {
+//         //mujhe verify karna hoga ki yeh user wahi hai jisne login kia
+//          const playload=jwt.verify(req.cookies.token,"mysecretkey") //jo token hai apka cokkie ma aur secretkey
+//          //agar yeh verify nhi ho pata toh yeh error fek kar marega
+//          console.log(playload);
+//          const result=await user.findById(playload.id);
+//          console.log(req.cookies);
+//          res.send(result);
+//     }
+//     catch (err) {
+//         res.send(err.message);
+//     }
+// })
+app.get("/info", async (req, res) => {
     try {
-        //mujhe verify karna hoga ki yeh user wahi hai jisne login kia
-         const playload=jwt.verify(req.cookies.token,"mysecretkey") //jo token hai apka cokkie ma aur secretkey
-         //agar yeh verify nhi ho pata toh yeh error fek kar marega
-         console.log(playload);
-         const result=await user.findById(playload.id);
-         console.log(req.cookies);
-         res.send(result);
+        const token = req.cookies.token;
+
+        if (!token) {
+            throw new Error("Token not found");
+        }
+
+        const playload = jwt.verify(token, "mysecretkey");
+
+        console.log(playload);
+        
+        const result = await user.findById(playload.id);
+
+        res.send(result);
     }
     catch (err) {
         res.send(err.message);
     }
-})
+});
+
 main()
 .then(async()=>{
     console.log("DB IS CONNECTED")
