@@ -75,11 +75,12 @@ app.get("/info", async (req, res) => {
             throw new Error("Token not found");
         }
 
+        
         const playload = jwt.verify(token, "mysecretkey");
 
         console.log(playload);
 
-        
+
         const result = await user.findById(playload.id);
 
         res.send(result);
