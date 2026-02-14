@@ -78,12 +78,13 @@ app.get("/info", async (req, res) => {
         const playload = jwt.verify(token, "mysecretkey");
 
         console.log(playload);
-        
+
         const result = await user.findById(playload.id);
 
         res.send(result);
     }
     catch (err) {
+      
         res.send(err.message);
     }
 });
