@@ -84,7 +84,6 @@ app.get("/info", async (req, res) => {
         res.send(result);
     }
     catch (err) {
-      
         res.send(err.message);
     }
 });
