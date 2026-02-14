@@ -79,6 +79,7 @@ app.get("/info", async (req, res) => {
 
         console.log(playload);
 
+        
         const result = await user.findById(playload.id);
 
         res.send(result);
