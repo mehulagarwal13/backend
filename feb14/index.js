@@ -54,7 +54,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
-
+//
 // app.get("/info",async(req,res)=>{
 //     try {
 //         //mujhe verify karna hoga ki yeh user wahi hai jisne login kia
