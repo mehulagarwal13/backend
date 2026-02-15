@@ -6,6 +6,7 @@ const validatoruser=require("./validator")
 const bcrypt=require("bcrypt")
 const cookieparse=require("cookie-parser")
 const jwt = require('jsonwebtoken');
+const auth=require("./middleware/auth")
 app.use(cookieparse());
 app.use(express.json())
 app.post("/register",async(req,res)=>{
@@ -69,23 +70,17 @@ app.post("/login", async (req, res) => {
 //         res.send(err.message);
 //     }
 // })
-app.get("/info", async (req, res) => {
+app.get("/info",auth, async (req, res) => {
     try {
-        const token = req.cookies.token;
+        // const token = req.cookies.token;
+        // if (!token) {
+        //     throw new Error("Token not found");
+        // }
+        // const playload = jwt.verify(token, "mysecretkey");
+        // console.log(playload);
+        // const result = await user.findById(playload.id);
 
-        if (!token) {
-            throw new Error("Token not found");
-        }
-
-
-        const playload = jwt.verify(token, "mysecretkey");
-
-        console.log(playload);
-
-
-        const result = await user.findById(playload.id);
-
-        res.send(result);
+        res.send(req.user);
     }
     catch (err) {
         res.send(err.message);
