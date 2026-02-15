@@ -8,6 +8,7 @@ const cookieparse=require("cookie-parser")
 const jwt = require('jsonwebtoken');
 const auth=require("./middleware/auth")
 app.use(cookieparse());
+require("dotenv").config({path:"../.env"}); 
 app.use(express.json())
 app.post("/register",async(req,res)=>{
     //api check karunga db alling sa phle    
@@ -43,7 +44,7 @@ app.post("/login", async (req, res) => {
 
         const token = jwt.sign(
                { id: a._id, email: a.email },   // payload object
-                 "mysecretkey",                   // secret key
+                 process.env.SECRET_KEY,                   // secret key
                 { expiresIn: "1d" }              // optional
         );
 
@@ -90,7 +91,7 @@ app.get("/info",auth, async (req, res) => {
 main()
 .then(async()=>{
     console.log("DB IS CONNECTED")
-    app.listen(3000,()=>{
+    app.listen(process.env.PORT,()=>{
         console.log("listen at 3000")
     })
  })

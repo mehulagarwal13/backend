@@ -11,7 +11,7 @@ const auth=async(req,res,next)=>{
             }
     
     
-            const playload = jwt.verify(token, "mysecretkey");
+            const playload = jwt.verify(token, process.env.SECRET_KEY);
     
             const {id}=playload
             if(!id){
