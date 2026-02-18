@@ -20,6 +20,8 @@ app.post("/logout",async(req,res)=>{
        res.send("ERROR " + err.message)
     }
 })
+
+
 app.post("/register",async(req,res)=>{
     //api check karunga db alling sa phle    
     try{
