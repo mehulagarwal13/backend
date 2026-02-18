@@ -45,7 +45,6 @@ app.post("/login", async (req, res) => {
         // if (req.body.email !== a.email) {
         //     return res.send("Invalid credentials");
         // }
-
         const p = await bcrypt.compare(req.body.password, a.password);
 
         if (!p) {
