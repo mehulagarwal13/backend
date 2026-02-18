@@ -21,7 +21,6 @@ app.post("/logout",async(req,res)=>{
     }
 })
 
-
 app.post("/register",async(req,res)=>{
     //api check karunga db alling sa phle    
     try{
