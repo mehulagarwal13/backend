@@ -5,7 +5,10 @@ const clientredis=redis.createClient({username: 'default',
         host: 'redis-16734.crce276.ap-south-1-3.ec2.cloud.redislabs.com',
         port: 16734
     }});
-
+const connectredis=async()=>{
+    await clientredis.connect();
+    console.log("connected to redis");
+}
 
 
 module.exports=clientredis;
