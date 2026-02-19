@@ -9,6 +9,6 @@ const connectredis=async()=>{
     await clientredis.connect();
     console.log("connected to redis");
 }
-
+coneectredis();
 
 module.exports=clientredis;
