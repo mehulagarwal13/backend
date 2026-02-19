@@ -11,6 +11,11 @@ const { now } = require("mongoose");
 app.use(cookieparse());
 require("dotenv").config({path:"../.env"}); 
 app.use(express.json())
+const clientredis=require("./config/redis")
+
+
+
+
 app.post("/logout",async(req,res)=>{
     try{
     res.cookie("token",null,{expires:new Date(Date.now())})
