@@ -102,16 +102,31 @@ app.get("/info",auth, async (req, res) => {
         res.send(err.message);
     }
 });
+const intialiseconnect=async()=>{
+    try{
+    await clientredis.connect();
+    console.log("connected to redis");
 
-main()
-.then(async()=>{
+    await main();
     console.log("DB IS CONNECTED")
     app.listen(process.env.PORT,()=>{
         console.log("listen at 3000")
     })
- })
- .catch((err)=>{
-    console.log(err)
- })
+  }
+  catch(err){
+    console.log("message"+err.message)
+  }
+}
+intialiseconnect();
+// main()
+// .then(async()=>{
+//     console.log("DB IS CONNECTED")
+//     app.listen(process.env.PORT,()=>{
+//         console.log("listen at 3000")
+//     })
+//  })
+//  .catch((err)=>{
+//     console.log(err)
+//  })
 
  
