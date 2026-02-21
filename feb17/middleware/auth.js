@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const user=require("../user")
-
+const clientredis=require("./../config/redis")
 
 const auth=async(req,res,next)=>{
      try {
@@ -21,6 +21,10 @@ const auth=async(req,res,next)=>{
             if (!result) {
             throw new Error("User not found");
              }
+            const isblocked=await clientredis.get("token:${token}")
+                if(isblocked){
+                    throw new Error("you are blocked")
+                }
         req.user = result;   // ⭐ MOST IMPORTANT LINE
              next();
      }

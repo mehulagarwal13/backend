@@ -18,6 +18,10 @@ const clientredis=require("./config/redis")
 
 app.post("/logout",async(req,res)=>{
     try{
+        const {token}=req.cookies;
+        const playload=jwt.decode(token);
+        await clientredis.set('token:${token}',"blocked") 
+        await clientredis.expireAt('token:${token}',playload.exp) //1 day
     res.cookie("token",null,{expires:new Date(Date.now())})
     res.send("logout ")
     }
@@ -104,11 +108,13 @@ app.get("/info",auth, async (req, res) => {
 });
 const intialiseconnect=async()=>{
     try{
-    await clientredis.connect();
-    console.log("connected to redis");
+    // await clientredis.connect();
+    // console.log("connected to redis");
 
-    await main();
-    console.log("DB IS CONNECTED")
+    // await main();
+    // console.log("DB IS CONNECTED")
+    await Promise.all([main(),clientredis.connect()]);  //yeh dono ko ek sath connect kar dega parllelly
+    console.log("DB IS CONNECTED and connected to redis")
     app.listen(process.env.PORT,()=>{
         console.log("listen at 3000")
     })
