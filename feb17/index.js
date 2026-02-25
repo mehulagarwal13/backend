@@ -13,7 +13,7 @@ require("dotenv").config({path:"../.env"});
 app.use(express.json())
 const clientredis=require("./config/redis")
 
-
+app.use(ratelimiter)
 
 
 app.post("/logout",async(req,res)=>{
