@@ -8,6 +8,7 @@ const cookieparse=require("cookie-parser")
 const jwt = require('jsonwebtoken');
 const auth=require("./middleware/auth");
 const { now } = require("mongoose");
+const ratelimiter=require("./middleware/ratelimiter")
 app.use(cookieparse());
 require("dotenv").config({path:"../.env"}); 
 app.use(express.json())
