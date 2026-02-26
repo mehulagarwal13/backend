@@ -12,6 +12,7 @@ const ratelimiter=async (req,res,next)=>{
         if(cnt>60){
             throw new Error("Too many request")
         }
+        next();
     }
     catch(err){
         res.send("ERROR " + err.message)
