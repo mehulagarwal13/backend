@@ -5,3 +5,5 @@ const clientredis=require("./../config/redis")
 const ratelimiter=async (req,res,next)=>{
 
 }
+
+module.exports=ratelimiter;
