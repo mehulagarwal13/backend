@@ -17,7 +17,6 @@ const clientredis=require("./config/redis")
 app.use(ratelimiter)
 app.post("/logout",async(req,res)=>{
     try{
-        
         const {token}=req.cookies;
         const playload=jwt.decode(token);
         await clientredis.set('token:${token}',"blocked") 
