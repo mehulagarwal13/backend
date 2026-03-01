@@ -9,7 +9,7 @@ const ratelimiter=async (req,res,next)=>{
         if(cnt==1){
             await clientredis.expire(3600) //1 min
         }
-        if(cnt>60){
+        if(cnt>10){
             throw new Error("Too many request")
         }
         next();
