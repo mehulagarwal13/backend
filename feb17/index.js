@@ -13,7 +13,7 @@ app.use(cookieparse());
 require("dotenv").config({path:"../.env"}); 
 app.use(express.json())
 const clientredis=require("./config/redis")
-//ratelimiter
+//ratelimiter middleware ko app.use() ki help sa use karna hoga taki yeh har request pe check kare ki kitni request aa rahi hai ek particular ip sa
 app.use(ratelimiter)
 
 
