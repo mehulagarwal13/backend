@@ -13,7 +13,7 @@ app.use(cookieparse());
 require("dotenv").config({path:"../.env"}); 
 app.use(express.json())
 const clientredis=require("./config/redis")
-
+//ratelimiter
 app.use(ratelimiter)
 
 
