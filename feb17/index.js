@@ -15,11 +15,6 @@ app.use(express.json())
 const clientredis=require("./config/redis")
 //ratelimiter middleware ko app.use() ki help sa use karna hoga taki yeh har request pe check kare ki kitni request aa rahi hai ek particular ip sa
 app.use(ratelimiter)
-
-
-
-
-
 app.post("/logout",async(req,res)=>{
     try{
         const {token}=req.cookies;
