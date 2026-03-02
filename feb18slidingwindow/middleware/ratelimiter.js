@@ -4,7 +4,7 @@ const clientredis=require("./../config/redis")
 
 const ratelimiter=async (req,res,next)=>{
     try{
-       const key=IP:${req.ip} //ip address ko key ke roop me use karna hoga taki har ip ke liye alag se request count maintain ho sake;
+       const key='IP:${req.ip}'; //ip address ko key ke roop me use karna hoga taki har ip ke liye alag se request count maintain ho sake;
        const current_time=Date.now()/1000; // Convert to seconds
        const request_time=current_time-3600; //isse phle ki request ko delete karna hoga
 
