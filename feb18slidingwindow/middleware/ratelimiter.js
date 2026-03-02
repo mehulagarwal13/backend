@@ -11,6 +11,10 @@ const ratelimiter=async (req,res,next)=>{
        await clientredis.zremrangebyscore(key,0,request_time) //isse phle ki request ko delete karna hoga
        const request_count=await clientredis.zcard(key) //isse current request count milega
 
+       if(request_count>=5){
+        return res.status(429).send("Too many requests. Please try again later.");
+       }
+
     }
     catch(err){
         
