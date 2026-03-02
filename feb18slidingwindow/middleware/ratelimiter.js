@@ -14,6 +14,9 @@ const ratelimiter=async (req,res,next)=>{
        if(request_count>=5){
         throw new Error("Too many requests. Please try again later.");
        }
+       await clientredis.zAdd(key, [{score: current_time,value: `${current_time}:${Math.random()}`}]) //isse current request ko add karna hoga
+       await clientredis.expire(key,3600) //isse key ko expire karna hoga 1 hour ke baad
+       next();
 
     }
     catch(err){
