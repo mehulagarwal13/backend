@@ -12,7 +12,7 @@ const ratelimiter=async (req,res,next)=>{
        const request_count=await clientredis.zcard(key) //isse current request count milega
 
        if(request_count>=5){
-        return res.status(429).send("Too many requests. Please try again later.");
+        throw new Error("Too many requests. Please try again later.");
        }
 
     }
