@@ -13,3 +13,4 @@ app.post("/register", async (req, res) => {
         const data = await user.create(req.body);
         res.send({ message: "send the data", data: data })
     }   
+    catch (err) {               
